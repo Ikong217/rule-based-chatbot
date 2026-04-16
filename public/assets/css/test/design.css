@@ -1,0 +1,63 @@
+body {
+    background-color: #333;
+    margin: 0;
+}
+
+.content{
+    height: max-content;
+    width: max-content;
+}
+
+.content {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    position: relative; /* parent for absolute positioning */
+    height: 150px;
+    width: 150px;
+}
+
+.card-shadow {
+    position: absolute;
+    /* top: 6px;  slightly offset
+    left: 6px; */
+    background-color: darkblue;
+    height: 150px;
+    width: 150px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    z-index: 1; /* behind the card */
+}
+
+.card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 150px;
+    width: 150px;
+    background-color: white;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    z-index: 2; /* in front of shadow */
+}
+
+/* Hover effect */
+.card:hover {
+    transform: translate(12px, -12px);
+}
+
+.sticky {
+  position: sticky;
+  top: 0; /* distance from viewport top to stick */
+  background: yellow;
+  top: 10px;
+}
+
+html{
+    transition: smooth;
+}

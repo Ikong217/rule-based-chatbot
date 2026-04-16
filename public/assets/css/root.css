@@ -1,0 +1,16 @@
+:root {
+    --primary: #f5f5f5;
+    --secondary: #ffffff;
+    --text-color: #222222;
+    --btn-bg: #4f46e5;
+    --inp-bg: #ffffff;
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+    --primary: #121212;
+    --secondary: #1e1e1e;
+    --text-color: #ffffff;
+    --btn-bg: #6366f1;
+    --inp-bg: #2a2a2a;
+}

@@ -1,0 +1,21 @@
+.theme-prim {
+    background-color: var(--primary);
+}
+
+.theme-sec {
+    background-color: var(--secondary);
+}
+
+.theme-text {
+    color: var(--text-color);
+}
+
+.theme-btn {
+    background-color: var(--btn-bg);
+    color: var(--text-color);
+}
+
+.theme-inp {
+    background-color: var(--inp-bg);
+    color: var(--text-color);
+}

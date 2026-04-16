@@ -1,0 +1,68 @@
+return [
+    'storage' => 'session',
+    'logging' => false,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Roles
+    |--------------------------------------------------------------------------
+    | Define what roles exist in your app.
+    | Used for visibility checks in HasModel + AutoModel.
+    |
+    | Option 1 — hardcode them:
+    |   'roles' => ['super_admin', 'admin', 'customer']
+    |
+    | Option 2 — load from DB (set this in AppServiceProvider instead):
+    |   config(['chatbot.roles' => Roles::pluck('name')->toArray()])
+    */
+    'roles' => [
+        'super_admin',
+        'admin',
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Role Resolver
+    |--------------------------------------------------------------------------
+    | How the chatbot gets the current user's role.
+    | Options:
+    |   'auth.role'  → auth()->user()->role
+    |   'auth.roles' → auth()->user()->roles (many-to-many)
+    |   'session'    → session('role')
+    |   'custom'     → define in AppServiceProvider
+    */
+    'role_resolver' => 'auth.role',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Tables
+    |--------------------------------------------------------------------------
+    | Field visibility rules per table.
+    | Only needed when using HasModel + AutoModel.
+    |
+    | visibility:
+    |   []            = public (everyone sees it)
+    |   ['role']      = only listed roles see it
+    |   field missing = public by default
+    */
+    'tables' => [
+
+        'products' => [
+            'visibility' => [
+                'name'        => [],
+                'price'       => [],
+                'stock'       => ['admin', 'super_admin'],
+                'cost'        => ['super_admin'],
+                'description' => [],
+            ],
+        ],
+
+        // 'orders' => [
+        //     'visibility' => [
+        //         'total'  => ['admin', 'super_admin'],
+        //         'status' => [],
+        //     ],
+        // ],
+
+    ],
+];

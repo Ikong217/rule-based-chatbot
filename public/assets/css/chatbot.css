@@ -1,0 +1,82 @@
+/* RESET (important) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* CENTERING */
+.content {
+    height: 100dvh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* WRAPPER */
+.content-wrapper {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+/* FORM CARD */
+.form-message {
+    width: 100%;
+    padding: 30px 25px;
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* TITLE */
+.form-message h1 {
+    font-size: 22px;
+    text-align: center;
+}
+
+/* INPUT GROUP */
+.input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* INPUT */
+.theme-inp {
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 14px;
+}
+
+/* BUTTON */
+.theme-btn {
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.theme-btn:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+/* TOGGLE BUTTON */
+.toggle-btn {
+    margin-bottom: 10px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}

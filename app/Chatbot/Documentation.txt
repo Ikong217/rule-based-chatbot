@@ -1,0 +1,135 @@
+Core folder contains all the base classes need to run the Chatbot
+Please do not Alter all of its components not unless you want to modify the chatbot logic
+
+
+
+====== To use Chatbot ======
+
+/--calling the chatbot class--/
+simply call the main class
+[/Chatbot/Core/Chatbot::class]
+
+storing it in variable for better approach
+[$chatbot = new Chatbot();]
+then you can use [$chatbot->getResponse('some message');]
+
+
+/-- getting resonse-/
+simply put a message into the class by using
+[getResponse()] method
+
+pass a message like [getResponse('some message here')]
+
+
+/-- using stream response (for streaming responses optional) --/
+simply put message int the class using
+[streamResponse()] method
+
+pass a message like [streamResponse('some mesage here')]
+making a typing response with delays or such
+
+just visit \Chatbot\Core\BaseHandler::class streamResponse() for the actual code
+
+====== To use Chatbot ======
+
+
+
+
+===== To make a Custom Response rules =====
+
+/-- usage --/
+creating a custom response lets you make your own dynamic bot messages,
+you can use it to provide automated responses such as faq or product details
+by making a custom response you can make a dynamic responses according to what response you want to give to the user if they need something
+
+/-- creating a cusom response --/
+inside the folder [\Chatbot\Responses\], you can make you own custom responses
+all custom responses are only detected here, otherwise it wont work
+
+
+/-- child class --/
+you must extend this class from [Chatbot\Core\Response] to inherit the parent's functions such as getResponse, otherwise it wont work
+[class CustomResponse exteds Response] -- a child class of Response
+
+
+/-- making own rules --/
+make an array variable called [$rules] to the class
+[protected array $rules = ['keyword'=>'response']]
+once the user send a message containing the keyword, it will response according to the value you have given
+
+
+/-- trigger word --/
+adding trigger word is essential to the class letting the bot know how it filters the responses
+trigger words are the identifier of the response
+you can write [public static string $triggerWord = 'greeting';] to put
+custom  responses without trigger word are most likely to get ignored by the handler so to be sure, you must right it
+
+
+/-- error response --/
+error response are the throwable response if the message is not in the rules
+the [getResopnse()] method automatically throw an error
+error response are optional,
+if error reponse is not existing or is null, then the bot will auto fill the response from [\Chatbot\Core\ErrorResponses::class]
+to make an error response simply type [protected array $errorResponse = [];]
+
+===== To make a Custom Response rules =====
+
+
+
+===== Restrictors =====
+
+/-- usage --/
+restrictors are the middleware of you custom responses
+it detects what are allowed to gain the access of the information of the rules you have middleware
+for example, only admin can know how many users are logged today, then restrictors blocks that information of user if auth is not admin
+
+
+/-- creating a cusom restrictors --/
+inside the folder [\Chatbot\Restrictors\], you can make you own custom restrictors
+
+
+/-- setup --/
+extend the restrictor to the parent [\Chatbot\Core\BaseRestrictor]
+[class TestRestrictor extends BaseRestrictor]
+
+--check if allowed--
+[
+    public function passes(): bool
+    {
+        //add you logic here
+        //example: retrun (auth()->check && auth()->user?->role('admin'));
+    }
+]
+this function lets you know whom are allowed to view the data of your response
+
+-- passing error message --
+in this you can give an error message on what you restriction you've made
+[
+    public function errorMessage(): string
+    {
+        //you can make your own custom error message here
+        //return "You don't have permisson to know these data";
+    }
+]
+
+/-- implements in responses --/
+you can activate restrictions by implementing restrictions using
+[class TestResponse extends Response implements HasRestriction]
+it lets the handler to know that it has restriction before making a response
+
+-- register restrictor/s --
+to register restrictors on you responses just use this function
+[
+    public function getRestrictor(): string|array
+    {
+        return TestRestrictor::class;
+        // or multiple: return [TestRestrictor::class, AnotherRestrictor::class];
+    }
+]
+by that it automatically restricts all the information given by your bot
+
+===== Restrictors =====
+
+
+
+{=-=-= OTHER FEATURE OF MY CUSTOM RULE BASED CHATBOT ARE TO BE FOLLOWED, THANK YOU FOR USING IT =-=-=}
